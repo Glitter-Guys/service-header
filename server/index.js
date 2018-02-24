@@ -5,8 +5,11 @@ const path = require('path');
 
 
 const app = express();
-var production = true;
-if (production) {
+
+// for logging
+app.use(morgan('dev'));
+
+if (process.env.NODE_ENV !== 'production') {
     const webpack = require('webpack');
     const wbHotMiddleware = require('webpack-hot-middleware');
     const wbDevMiddleware = require('webpack-dev-middleware');
@@ -18,10 +21,6 @@ if (production) {
         publicPath: config.output.publicPath
     }))
 }
-
-
-// for logging
-app.use(morgan('dev'));
 
 
 
