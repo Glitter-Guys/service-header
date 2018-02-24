@@ -1,21 +1,33 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const webpack = require('webpack');
-const wbMiddleware = require('webpack-dev-middleware');
+
 
 
 const app = express();
-const config = require('../webpack.config.js');
-const compiler = webpack(config);
+var production = true;
+if (production) {
+    const webpack = require('webpack');
+    const wbHotMiddleware = require('webpack-hot-middleware');
+    const wbDevMiddleware = require('webpack-dev-middleware');
+    const config = require('../webpack.config.js');
+    const compiler = webpack(config);
+
+    app.use(wbHotMiddleware(compiler));
+    app.use(wbDevMiddleware(compiler, {
+        publicPath: config.output.publicPath
+    }))
+}
+
+
+// for logging
+app.use(morgan('dev'));
+
+
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
-app.use(wbMiddleware(compiler, {
-    publicPath: config.output.publicPath
-}))
-// for logging
-//app.use(morgan('dev'));
+
 
 // app.use(express.static(path.resolve(__dirname, '../client/dist')));
 app.set('port', 3000);
