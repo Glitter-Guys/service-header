@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SharingBox says SharingBox when rendered 1`] = `
+exports[`App snapshot is similar to the last 1`] = `
 <div
   className="container"
 >
