@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SharingBox fits the snapshot 1`] = `
+<div
+  className="sharing-box"
+>
+  <p>
+    SharingBox
+  </p>
+</div>
+`;
+
+exports[`SharingBox says SharingBox when rendered 1`] = `
+<div
+  className="sharing-box"
+>
+  <p>
+    SharingBox
+  </p>
+</div>
+`;

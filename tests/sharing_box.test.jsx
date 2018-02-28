@@ -1,10 +1,13 @@
 // Link.react.test.js
 import React from 'react';
-import SharingBox from '../client/src/app.jsx';
+import SharingBox from '../client/src/components/sharing_box';
 import renderer from 'react-test-renderer';
 import {shallow} from 'enzyme';
 
-test('SharingBox says SharingBox when rendered', () => {
+
+
+
+test('SharingBox fits the snapshot', () => {
   const component = renderer.create(
     <SharingBox text='SharingBox' ></SharingBox>,
   );
@@ -16,3 +19,12 @@ test('SharingBox says SharingBox when rendered', () => {
 // expect(checkbox.text()).toEqual('SharingBox');
 
 });
+
+test('SharingBox says SharingBox when rendered', () => {
+
+  
+  const sharingBox = shallow(<SharingBox text='SharingBox' />);
+  
+  expect(sharingBox.text()).toEqual('SharingBox');
+  
+  });

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 const SharingBox = function(props) {
   return (
   <div className='sharing-box'>
-      <p>SharingBox</p>
+      <p>{props.text}</p>
   </div>)
 };
 
