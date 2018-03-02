@@ -6,7 +6,7 @@ import SharingBox from './sharing_box.jsx';
 const ResponseBox = function(props) {
   return (
     <div className='response-box'>
-        <AttendanceBox />
+        <AttendanceBox numRSVP={props.numRSVP} />
         <SharingBox />
     </div>
   )

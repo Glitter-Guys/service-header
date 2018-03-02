@@ -6,8 +6,8 @@ import DetailsBox from './details_box.jsx';
 const InfoBox = function(props) {
   return (
     <div className='info-box'>
-        <DateBox />
-        <DetailsBox />
+        <DateBox localDate={props.data.local_date} localTime={props.data.local_time}/>
+        <DetailsBox data={props.data} />
     </div>
   
   )

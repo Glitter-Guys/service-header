@@ -6,13 +6,14 @@ import ResponseBox from './components/response_box.jsx';
 class App extends React.Component {
     constructor(props) {
         super(props);
+        
     }
 
     render () {
         return (
             <div className='container'>
-                <InfoBox />
-                <ResponseBox />
+                <InfoBox data={this.props.data}/>
+                <ResponseBox numRSVP={this.props.data.yes_rsvp_count} />
             </div>
         )
     }
