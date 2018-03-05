@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 // app.use(express.static(path.resolve(__dirname, '../client/dist')));
-app.set('port', 3000);
+app.set('port', 8080);
 
 app.listen(app.get('port'), function () {
     console.log('Listening to port ' + app.get('port'));

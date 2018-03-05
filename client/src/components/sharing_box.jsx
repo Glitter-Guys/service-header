@@ -14,6 +14,7 @@ const SharingBox = function(props) {
         <span className='sharing-box-twitter-text'>Tweet</span>
       </div>
   </Grid.Row>)
+
 };
 
 export default SharingBox;
