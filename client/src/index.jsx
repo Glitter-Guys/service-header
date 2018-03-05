@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app.jsx';
-import './styles/app.css';
 
 window.sampleData = {
     "created": 1502215620000,

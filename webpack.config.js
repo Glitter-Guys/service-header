@@ -1,9 +1,10 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Build directory is where the bundle file will be placed
-var BUILD_DIR = path.resolve(__dirname, 'client/dist');
+const BUILD_DIR = path.resolve(__dirname, 'client/dist');
 // App directory is where all of your raw JSX files will be placed
-var APP_DIR = path.resolve(__dirname, 'client/src');
+const APP_DIR = path.resolve(__dirname, 'client/src');
 
 module.exports = {
   entry: APP_DIR + "/index.jsx",
@@ -33,9 +34,21 @@ module.exports = {
         ]
       },
       {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
-    }
+        test: /\.css$/,
+        use: [
+          {
+             loader: 'style-loader',
+          },
+          {
+             loader: 'css-loader',
+             options: {
+                sourceMap: true,
+                modules: true,
+                localIdentName: '[local]___[hash:base64:5]'
+               }
+          }
+          ],
+       }
     ]
   },
 plugins: [

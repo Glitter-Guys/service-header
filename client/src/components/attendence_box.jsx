@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Segment, Button, Grid} from 'semantic-ui-react';
 
 const AttendanceBox = function(props) {
   return (
-  <div className='attendance-box'>
-    <div className='attendance-box-question-box'> 
-      <div className='attendance-box-text'>Are you going?</div>
-      <div className='attendance-box-numRSVP'>{props.numRSVP} people going</div>
-    </div>
-    <div className='attendance-box-buttons'>
-      <button className='attendance-box-button-no'>X</button>
-      <button className='attendance-box-button-yes'>L</button>
-    </div>
-  </div>
+  <Grid.Row className='attendance-box'>
+    <Grid>
+      <Grid.Row className='attendance-box-question-box'> 
+        <span className='attendance-box-text'>Are you going?</span>
+        <span className='attendance-box-numRSVP'>{props.numRSVP} people going</span>
+      </Grid.Row>
+      <Grid.Row className='attendance-box-buttons'>
+        <Button className='attendance-box-button-no'>X</Button>
+        <Button className='attendance-box-button-yes'>L</Button>
+      </Grid.Row>
+    </Grid>
+  </Grid.Row>
   )
 };
 
