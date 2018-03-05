@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Button } from 'semantic-ui-react'
+import styles from '../styles/sharing_box.css'
 
 const SharingBox = function(props) {
   return (
-  <Grid.Row className='sharing-box'>
-      <div className='sharing-box-facebook'>
-        <Button circular color='facebook' icon='facebook' />
-        <span className='sharing-box-facebook-text'>Share</span>
+  <Grid.Row className={styles.sharingBox}>
+      <div className={styles.sharingBoxIndiv}>
+        <Button className={styles.facebook} compact={true} color='facebook' icon='facebook' />
+        <span className={styles.sharingBoxText}>Share</span>
       </div>
-      <div className='sharing-box-twitter'>
-        <Button circular color='twitter' icon='twitter' />
-        <span className='sharing-box-twitter-text'>Tweet</span>
+      
+      <div className={styles.sharingBoxIndiv}>
+        <Button className={styles.twitter} compact={true} color='twitter' icon='twitter' />
+        <span className={styles.sharingBoxText}>Tweet</span>
       </div>
   </Grid.Row>)
-
 };
 
 export default SharingBox;

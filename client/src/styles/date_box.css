@@ -1,0 +1,30 @@
+.dateBox {
+    margin:auto;
+    text-align: center;
+    background: #f6f7f8;
+    border: 1px solid rgba(46,62,72,.12);
+    border-radius: 8px;
+    min-width: 36px;
+    min-height: 36px;
+    width:54px;
+    height: 54px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container {
+    text-align:center;
+}
+
+.dateBoxDay {
+    color:#f13a59;
+    font-size:20px;
+}
+
+.dateBoxMonth {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgba(46,62,72,.6);
+    font-size: .75rem;
+}
