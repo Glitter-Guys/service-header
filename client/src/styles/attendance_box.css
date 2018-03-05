@@ -1,0 +1,41 @@
+.attendanceBoxNumRSVP {
+    font-size: .875rem;
+    line-height: 1.6;
+    font-weight: 400;
+    stroke: transparent;
+    fill: rgba(46,62,72,.6);
+    color: rgba(46,62,72,.6);
+    margin-left: 7px;
+}
+
+.attendanceBoxText {
+    font-weight: 500;
+}
+
+.attendanceBoxButton {
+    background: #00a2c7;
+    color: #fff;
+    width: 45%;
+    margin-left: 0px;
+}
+
+.attendanceBoxDivider {
+    display: inline-block;
+    width: 10%;
+}
+
+.attendanceBoxQuestion {
+    padding:0px;
+    margin-bottom: 7px;
+}
+
+.attendanceBoxButtons {
+    padding:0px;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.attendanceBox {
+    padding-bottom: 2px !important;
+}

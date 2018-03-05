@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Segment, Button, Grid} from 'semantic-ui-react';
+import {Divider, Button, Grid } from 'semantic-ui-react';
+import styles from '../styles/attendance_box.css';
 
 const AttendanceBox = function(props) {
   return (
-  <Grid.Row className='attendance-box'>
-    <Grid>
-      <Grid.Row className='attendance-box-question-box'> 
-        <span className='attendance-box-text'>Are you going?</span>
-        <span className='attendance-box-numRSVP'>{props.numRSVP} people going</span>
-      </Grid.Row>
-      <Grid.Row className='attendance-box-buttons'>
-        <Button className='attendance-box-button-no'>X</Button>
-        <Button className='attendance-box-button-yes'>L</Button>
-      </Grid.Row>
-    </Grid>
+  <Grid.Row className={styles.attendanceBox}>
+      <div className={styles.attendanceBoxQuestion}> 
+        <span className={styles.attendanceBoxText}>Are you going?</span>
+        <span className={styles.attendanceBoxNumRSVP}>{props.numRSVP} people going</span>
+      </div>
+      <div className={styles.attendanceBoxButtons}>
+        <Button icon='checkmark' compact={true} color={'teal'} className={styles.attendanceBoxButton}></Button>
+        <Button icon='remove' compact={true} color={'teal'} className={styles.attendanceBoxButton}></Button>
+      </div>
   </Grid.Row>
   )
 };
