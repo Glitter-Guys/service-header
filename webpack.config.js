@@ -10,8 +10,7 @@ module.exports = {
   entry: APP_DIR + "/index.jsx",
   output: {
     path: BUILD_DIR,
-    filename: "bundle.js",
-    publicPath: '/'
+    filename: "bundle.js"
   },
   devServer: {
   contentBase: BUILD_DIR
