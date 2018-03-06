@@ -5,3 +5,4 @@
 3. npm run seed
 4. npm run build
 5. npm run production
+6. query /event/:eventID/
