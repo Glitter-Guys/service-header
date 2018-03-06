@@ -3,4 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './app.jsx';
 
 
-ReactDOM.render(<App data={window.data}/>, document.getElementById('app'));
+//ReactDOM.render(<App data={window.data}/>, document.getElementById('app'));
+
+window.Header = App;
