@@ -7,8 +7,8 @@
     "test": "jest",
     "dev-server": "webpack-dev-server --open",
     "start": "node server/index.js",
-    "build": "webpack",
-    "production": "NODE_ENV=production node server/index.js",
+    "build": "webpack --watch",
+    "production": "NODE_ENV=production nodemon server/index.js",
     "initDb": "mkdir ./db/data && mongod --dbpath ./db/data",
     "seed": "node seed_data_worker.js",
     "db": "mongod --dbpath ./db/data"
