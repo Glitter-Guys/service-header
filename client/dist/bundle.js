@@ -21416,7 +21416,9 @@ var _app2 = _interopRequireDefault(_app);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_app2.default, { data: window.data }), document.getElementById('app'));
+//ReactDOM.render(<App data={window.data}/>, document.getElementById('app'));
+
+window.Header = _app2.default;
 
 /***/ }),
 /* 387 */
