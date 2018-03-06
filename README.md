@@ -5,4 +5,4 @@
 3. npm run seed
 4. npm run build
 5. npm run production
-6. query /event/:eventID/
+6. query /event/:eventID/bundle.js
