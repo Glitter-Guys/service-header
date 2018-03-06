@@ -10,9 +10,6 @@ const app = express();
 // for logging
 app.use(morgan('dev'));
 
-var publicPath;
-
-
 if (process.env.NODE_ENV !== 'production') {
     // Tell express to use the webpack-dev-middleware and use the webpack.config.js
     // configuration file as a base.
@@ -26,20 +23,35 @@ if (process.env.NODE_ENV !== 'production') {
     app.use(wbDevMiddleware(compiler, {
         publicPath: '/'
     }))
-
+    
 } else {
-    app.get(/\/event\/.*\/bundle.js/, function(req, res) {
-        fs.readFile('./client/dist/bundle.js', 'utf-8', function (err, data) {
-            if (err) console.log(err);
-            res.status(200);
-            res.end(data);
+    app.use(/\/event\/.*\/bundle.js/, function(req, res) {
+        var eventId = req.baseUrl.split('/')[2];
+        dbHelper.retrieveEvent(eventId, function(err, event) {
+            if (err) {
+                res.status(401);
+                res.end('Database Err' + err);
+                return;
+            }
+            //script tag
+            var windowData = 'window.data = ' + JSON.stringify(event) +';';
+
+            //readHTML and add it to the html script
+            fs.readFile('./client/dist/bundle.js', 'utf-8', function(err, data) {
+                if (err) console.log(err);
+  
+                var str = windowData + data
+                //console.log(str);
+                //return html script + template
+                res.status(200);
+                res.end(str)
+            })
         })
     })
 
     app.use(/\/event\/.*\/.*/, function(req, res, next) {
-        console.log('REQ url: ', req.url);
-        console.log('REQ url: ', req.baseUrl);
-        publicPath = req.baseUrl.split('/').slice(0,3).join('/') + '/';
+
+        var publicPath = req.baseUrl.split('/').slice(0,3).join('/') + '/';
         var eventId = req.baseUrl.split('/')[2];
 
 
@@ -58,9 +70,9 @@ if (process.env.NODE_ENV !== 'production') {
                 if (err) console.log(err);
                 var re = /<\/head>/;
                 var ans = re.exec(data);
-                console.log('lastindex', ans.index);
+                //console.log('lastindex', ans.index);
                 var str = data.slice(0, ans.index) + scriptTag + data.slice(ans.index, data.length);
-                console.log(str);
+
                 //return html script + template
                 res.status(200);
                 res.end(str)
