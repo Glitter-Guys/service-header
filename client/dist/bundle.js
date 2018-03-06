@@ -38692,8 +38692,6 @@ var _response_box2 = _interopRequireDefault(_response_box);
 
 var _semanticUiReact = __webpack_require__(38);
 
-var _semanticUiReact2 = _interopRequireDefault(_semanticUiReact);
-
 var _app = __webpack_require__(777);
 
 var _app2 = _interopRequireDefault(_app);
@@ -38712,17 +38710,29 @@ var App = function (_React$Component) {
     function App(props) {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+        _this.state = {
+            bodyRef: document.getElementsByTagName('body')
+        };
+        return _this;
     }
+    //sticky items can be configured later
+
 
     _createClass(App, [{
         key: 'render',
         value: function render() {
-            return _react2.default.createElement(
-                _semanticUiReact.Grid,
-                null,
-                _react2.default.createElement(_info_box2.default, { data: this.props.data }),
-                _react2.default.createElement(_response_box2.default, { numRSVP: this.props.data.yes_rsvp_count })
+            return (
+                //<Sticky context={this.state.bodyRef}>
+                _react2.default.createElement(
+                    _semanticUiReact.Grid,
+                    null,
+                    _react2.default.createElement(_info_box2.default, { data: this.props.data }),
+                    _react2.default.createElement(_response_box2.default, { numRSVP: this.props.data.yes_rsvp_count })
+                )
+                //</Sticky>
+
             );
         }
     }]);
@@ -60623,8 +60633,42 @@ var AttendanceBox = function AttendanceBox(props) {
     _react2.default.createElement(
       'div',
       { className: _attendance_box2.default.attendanceBoxButtons },
-      _react2.default.createElement(_semanticUiReact.Button, { icon: 'checkmark', compact: true, color: 'teal', className: _attendance_box2.default.attendanceBoxButton }),
-      _react2.default.createElement(_semanticUiReact.Button, { icon: 'remove', compact: true, color: 'teal', className: _attendance_box2.default.attendanceBoxButton })
+      _react2.default.createElement(
+        _semanticUiReact.Modal,
+        { trigger: _react2.default.createElement(_semanticUiReact.Button, { icon: 'checkmark', compact: true, color: 'teal', className: _attendance_box2.default.attendanceBoxButton }) },
+        _react2.default.createElement(
+          _semanticUiReact.Modal.Header,
+          null,
+          'Thanks for the RSVP!'
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Modal.Content,
+          null,
+          _react2.default.createElement(
+            _semanticUiReact.Modal.Description,
+            null,
+            'But first sign up here'
+          )
+        )
+      ),
+      _react2.default.createElement(
+        _semanticUiReact.Modal,
+        { trigger: _react2.default.createElement(_semanticUiReact.Button, { icon: 'remove', compact: true, color: 'teal', className: _attendance_box2.default.attendanceBoxButton }) },
+        _react2.default.createElement(
+          _semanticUiReact.Modal.Header,
+          null,
+          'Your response is almost registered'
+        ),
+        _react2.default.createElement(
+          _semanticUiReact.Modal.Content,
+          null,
+          _react2.default.createElement(
+            _semanticUiReact.Modal.Description,
+            null,
+            'Log in here to finish responding'
+          )
+        )
+      )
     )
   );
 };
