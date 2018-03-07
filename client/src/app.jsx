@@ -16,7 +16,7 @@ class App extends React.Component {
     render () {
         return (
             //<Sticky context={this.state.bodyRef}>
-                <Grid>
+                <Grid stackable={true}>
                         <InfoBox data={this.props.data}/>
                         <ResponseBox numRSVP={this.props.data.yes_rsvp_count} />
                 </Grid>
