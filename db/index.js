@@ -6,7 +6,7 @@ class DbHelper {
         
         this.Event;
         this.Group;
-        mongoose.connect('mongodb://localhost/meetup');
+        mongoose.connect('mongodb://127.0.0.1:27017/meetup');
         this.db = mongoose.connection;
         this.db.on('error', console.error.bind(console, 'connection error:'));
         this.db.once('open', (function() {
