@@ -5,13 +5,13 @@
   "main": "server/server.js",
   "scripts": {
     "test": "jest",
-    "dev-server": "webpack-dev-server --open",
-    "start": "node server/index.js",
-    "build": "webpack --watch",
-    "production": "NODE_ENV=production nodemon server/index.js",
+    "dev": "node server/index.js",
+    "build": "webpack",
+    "start": "NODE_ENV=production nodemon server/index.js",
     "initDb": "mkdir ./db/data && mongod --dbpath ./db/data",
     "seed": "node seed_data_worker.js",
-    "db": "mongod --dbpath ./db/data"
+    "db": "mongod --dbpath ./db/data",
+    "docker": "npm run seed && npm run start"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "regenerator-runtime": "^0.11.1",
+    "scriptjs": "^2.5.8",
     "semantic-ui-css": "^2.3.0",
     "semantic-ui-react": "^0.78.3"
   },

@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  header:
+    image: yzheny/youdown_header
+    depends_on:
+      - 'database'
+    ports:
+      - '80:8080'
+  
+  database:
+    image: mongo:latest
