@@ -1,36 +1,49 @@
-const MongoClient = require('mongodb').MongoClient
-
-const doBulkWrite = (db, count, id, batchSize) => {
-  //Create chunk
-  const col = db.collection('groups');
-  const data = new Array(batchSize);
+const createBatch = (id, batchSize, docFunc) => {
+  const newBatch = new Array(batchSize);
   for (let i = 0; i < batchSize; i++) {
-    id += i;
-    data[i] = {
+    let doc = docFunc();
+    doc['id'] = id;
+    newBatch[i] = {
       insertOne: {
-        document: {
-          id: id,
-          text: 'hello'
-        }
+        document: doc
       }
     };
+    id++;
   }
-
-  col.bulkWrite(data)
-    .then(function(r) {
-      if (count === 0) {
-        db.close();
-      }
-      doBulkWrite(db, count - 1, id + batchSize);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  return {newBatch: newBatch, newId: id};
 };
 
-MongoClient.connect('mongodb://localhost:27017/sdc', function(err, database) {
-  // Get the collection
-  const db = database.db('sdc');
-  let count = 10;
-  doBulkWrite(db, count, 0, 1000);
-});
+const doBulkWrite = (col, count, id, batchSize, docFunc, callback) => {
+  const {newBatch, newId} = createBatch(id, batchSize, docFunc);
+
+  col.bulkWrite(newBatch, { bypassDocumentValidation: true })
+    .then((r) => {
+      if (count > 1) {
+        doBulkWrite(col, count - 1, newId, batchSize, docFunc, callback);
+      } else {
+        callback(null, 'finished');
+      }
+    })
+    .catch(err => {
+      callback(err, null);
+    });
+};
+
+//MongoClient.connect('mongodb://localhost:27017/sdc', (err, database) => {
+  //let count = 100;
+  //let id = 0;
+  //let batchSize = 10000
+  //let docFunc = insert.generateFakeGroupsRow;
+  //doBulkWrite(database, 'groups', count, id, batchSize, docFunc);
+//});
+
+//MongoClient.connect('mongodb://localhost:27017/sdc', (err, database) => {
+  //let count = 1000;
+  //let id = 0;
+  //let batchSize = 10000
+  //let docFunc = insert.generateFakeEventsRow;
+  //doBulkWrite(database, 'events', count, id, batchSize, docFunc);
+//});
+
+module.exports.createBatch = createBatch;
+module.exports.doBulkWrite = doBulkWrite;
