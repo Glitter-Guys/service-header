@@ -6,12 +6,12 @@ const initOptions = {
     capSQL: true,
 };
 const pgp = require('pg-promise')(initOptions);
-const insert = require('../db/pgBulkInsert.js');
-const query = require('../db/dbQuery.js');
-const testData = require('../db/testData.js');
+const insert = require('../db/postgres/pgBulkInsert.js');
+const query = require('../db/postgres/dbQuery.js');
+const testData = require('../db/postgres/testData.js');
 const rootDir = path.dirname(__dirname);
 
-describe('', () => {
+describe('tests for postgres data model', () => {
   let db;
   let createTestSchema;
 
@@ -23,7 +23,7 @@ describe('', () => {
       user: 'dmp',
     };
 
-    createTestSchema = fs.readFileSync(path.join(rootDir, './db/create_data_model_test.sql'), 'utf8');
+    createTestSchema = fs.readFileSync(path.join(rootDir, './db/postgres/create_data_model_test.sql'), 'utf8');
     db = pgp(cn);
   });
 
