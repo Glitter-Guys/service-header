@@ -1,8 +1,8 @@
-const createBatch = (id, batchSize, docFunc) => {
+const createBatch = (id, batchSize, docFunc, idField) => {
   const newBatch = new Array(batchSize);
   for (let i = 0; i < batchSize; i++) {
     let doc = docFunc();
-    doc['id'] = id;
+    doc[idField] = id;
     newBatch[i] = {
       insertOne: {
         document: doc
@@ -13,13 +13,13 @@ const createBatch = (id, batchSize, docFunc) => {
   return {newBatch: newBatch, newId: id};
 };
 
-const doBulkWrite = (col, count, id, batchSize, docFunc, callback) => {
-  const {newBatch, newId} = createBatch(id, batchSize, docFunc);
+const doBulkWrite = (col, count, id, batchSize, docFunc, idField, callback) => {
+  const {newBatch, newId} = createBatch(id, batchSize, docFunc, idField);
 
   col.bulkWrite(newBatch, { bypassDocumentValidation: true })
     .then((r) => {
       if (count > 1) {
-        doBulkWrite(col, count - 1, newId, batchSize, docFunc, callback);
+        doBulkWrite(col, count - 1, newId, batchSize, docFunc, idField, callback);
       } else {
         callback(null, 'finished');
       }

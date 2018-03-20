@@ -5,12 +5,12 @@ const resultArrayToObject = (res) => {
 
 const queryEvent = (col, eventId, callback) => {
   col.aggregate([
-    { $match: { id: eventId}
+    { $match: { eid: eventId}
     },
     { $lookup: {
       from: 'groups',
       localField: 'group_id',
-      foreignField: 'id',
+      foreignField: 'gid',
       as: 'group'}
     }
   ], null).toArray((err, res) => {

@@ -31,9 +31,9 @@ describe('tests for MongoDB data model', () => {
   });
 
   test('should create a batch of 10', () => {
-    const { newBatch } = insert.createBatch(0, 10, generateFakeGroupsRow);
+    const { newBatch } = insert.createBatch(0, 10, generateFakeGroupsRow, 'gid');
     expect(newBatch.length).toBe(10);
-    expect(newBatch[0].insertOne.document.id).toBe(0);
+    expect(newBatch[0].insertOne.document.gid).toBe(0);
     expect(typeof newBatch[0].insertOne.document.name).toBe('string');
   });
 
@@ -42,7 +42,8 @@ describe('tests for MongoDB data model', () => {
     const id = 0;
     const batchSize = 10000;
     const docFunc = generateFakeGroupsRow;
-    insert.doBulkWrite(colGroups, count, id, batchSize, docFunc, (err, msg) => {
+    const idField = 'gid'
+    insert.doBulkWrite(colGroups, count, id, batchSize, docFunc, idField, (err, msg) => {
       colGroups.count({}, (err, count) => {
         expect(count).toBe(10000);
         done();
@@ -55,11 +56,11 @@ describe('tests for MongoDB data model', () => {
     expect(obj).toEqual({ group: {} });
   });
 
-  test('should select event id 1', (done) => {
+  test('should select event id 1 and have a nested group', (done) => {
     query.queryEvent(colEvents, 1, (err, data) => {
       if (err) throw(err);
-      expect(data.id).toBe(1);
-      expect(typeof data.group.id).toBe('number');
+      expect(data.eid).toBe(1);
+      expect(typeof data.group.gid).toBe('number');
       done();
     });
   }, 10000);
