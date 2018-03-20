@@ -6,10 +6,10 @@ const selectToJson = (id) => {
       select *,
         ( select row_to_json(groups)
           from groups
-          where groups.id = events.group_id
+          where groups.gid = events.group_id
         ) as group
       from events
-      where id = ${id}
+      where eid = ${id}
     ) data;
     `
   );
