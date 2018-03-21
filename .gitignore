@@ -5,3 +5,5 @@ client/dist
 *.log
 .DS_Store
 bundle.js
+venv
+analysis
