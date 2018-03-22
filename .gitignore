@@ -7,3 +7,5 @@ client/dist
 bundle.js
 venv
 analysis
+newrelic*
+artillery
