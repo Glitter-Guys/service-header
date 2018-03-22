@@ -1,0 +1,16 @@
+.detailsBoxDate {
+    font-weight: 400;
+    stroke: transparent;
+    fill: rgba(46,62,72,.6);
+    color: rgba(46,62,72,.6);
+}
+
+.detailsBoxTitle {
+    font-size: 2rem;
+    stroke: transparent;
+    fill: #2e3e48;
+    color: #2e3e48;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 7px;
+}
