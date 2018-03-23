@@ -8,13 +8,11 @@ const dbh = require('../db/postgres/dbHelpers.js');
 
 const app = express();
 
-// for logging
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-
 app.use(express.static(path.resolve(__dirname, '../client/public')));
 
-app.get('/events/:id', async (req, res) => {
+app.get('/api/header/:id', async (req, res) => {
   const id = req.params.id;
   const pool = dbh.pool;
   const sql = dbh.selectToJson(id);
