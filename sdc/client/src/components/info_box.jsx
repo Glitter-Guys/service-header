@@ -5,6 +5,7 @@ import DetailsBox from './details_box.jsx';
 import {Grid} from 'semantic-ui-react';
 
 const InfoBox = function(props) {
+  console.log(props);
   return (
     <Grid.Column width={11}>
       <Grid>
@@ -12,7 +13,7 @@ const InfoBox = function(props) {
         <DetailsBox data={props.data} />
       </Grid>
     </Grid.Column>
-  
+
   )
 };
 

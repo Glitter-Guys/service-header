@@ -25,6 +25,10 @@ app.get('/api/header/:id', async (req, res) => {
   }
 });
 
+app.get('/api/test', async (req, res) => {
+  res.send('hi');
+});
+
 app.set('port', 8080);
 
 app.listen(app.get('port'), () => {
