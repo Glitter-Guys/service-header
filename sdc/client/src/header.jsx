@@ -6,7 +6,7 @@ import {Sticky, Grid } from 'semantic-ui-react';
 import styles from './styles/app.css';
 import { get } from './helpers/http';
 
-class App extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,14 +27,13 @@ class App extends React.Component {
         throw err;
       });
   }
-  //sticky items can be configured later
   render () {
     return (
       <Grid stackable={true}>
         <InfoBox data={this.state.header} />
-        <ResponseBox numRSVP={this.state.header.data.yes_rsvp_count} />
+        <ResponseBox numRSVP={this.state.header.yes_rsvp_count} />
       </Grid>
     )
   }
 }
-export default App;
+export default Header;
