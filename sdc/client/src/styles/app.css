@@ -1,0 +1,11 @@
+.container {
+    width:100%;
+    height: 100%;
+}
+
+body {
+    color: #2e3e48;
+    font-size: 1rem;
+    line-height: 1.45;
+    font-family: Graphik Meetup, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+}
