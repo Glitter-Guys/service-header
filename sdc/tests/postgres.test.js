@@ -80,15 +80,25 @@ describe('tests for postgres data model', () => {
     expect(selectId1.indexOf('1') !== -1).toBe(true);
   });
 
-  test('should select event id 1', (done) => {
+  test('should select event eid 1', (done) => {
     const selectId1 = query.selectToJson(1);
     db.one(selectId1, [true])
       .then(data => {
-        expect(data.result.id).toBe(1);
+        expect(data.result.eid).toBe(1);
         done();
       })
       .catch(error => {
         console.log(error);
       });
   });
+
+  test('should select event eid 1 with runQuery + return correct obj structure', async () => {
+    const selectId1 = query.selectToJson(1);
+    const pool = query.pool;
+    const result = await query.runQuery(pool, selectId1);
+    expect(typeof result).toBe('object');
+    expect(result.eid).toBe(1);
+    expect(typeof result.group).toBe('object');
+  });
+
 });
