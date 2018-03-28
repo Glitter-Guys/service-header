@@ -14,7 +14,7 @@ class Header extends React.Component {
   }
   static async getInitialProps(props) {
     //const res = await fetch(`/api/header/${this.props.eid}`);
-    const res = await fetch(`http://localhost:8080/api/header/${props.query.eid}`);
+    const res = await fetch(`http://54.219.171.181:8080/api/header/${props.query.eid}`);
     const data = await res.json();
     return {
       header: data
