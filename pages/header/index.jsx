@@ -13,9 +13,11 @@ class Header extends React.Component {
     super(props);
   }
   static async getInitialProps(props) {
+    console.log(props);
     //const res = await fetch(`/api/header/${this.props.eid}`);
-    const res = await fetch(`http://54.219.171.181:8080/api/header/${props.query.eid}`);
+    const res = await fetch(`http://sdc-webserver-balancer-fe4ae9ddc209c0e7.elb.us-west-1.amazonaws.com/api/v2/header/${props.eid}`);
     const data = await res.json();
+    console.log(data);
     return {
       header: data
     };
